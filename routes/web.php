@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\EntradaController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\EstudianteController;
@@ -25,9 +24,4 @@ Route::middleware('auth')->group(function(){
     Route::post('estudiantes', [EstudianteController::class, 'store'])->name('students.store');
     Route::get('estudiantes/{id}/edit', [EstudianteController::class, 'edit'])->name('students.edit');
     Route::put('estudiantes/{id}', [EstudianteController::class, 'update'])->name('students.update');
-});
-
-// Rutas para la api
-Route::middleware('api')->group(function(){
-    Route::post('api/registrar-entrada', [EntradaController::class, 'registrarEntrada']);
 });
