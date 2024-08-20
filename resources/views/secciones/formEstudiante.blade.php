@@ -5,6 +5,32 @@
 @section('content')
 
 <div class="row">
+
+    @if ($errors->any())
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                <h5>
+                    <i class="icon fas fa-exclamation-triangle"></i>
+                </h5>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -22,13 +48,13 @@
                 <div class="card-body">
                     
                     <div class="form-group">
-                        <label for="name">Nombre y Apellido</label>
+                        <label for="name">Nombre y Apellido (Obligatorio)</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre y Apellido" value="{{ old('name', $student->nombre) }}">
                     </div>
     
                     <div class="form-group">
-                        <label for="document">Documento</label>
-                        <input type="text" class="form-control" id="document" name="document" placeholder="Documento" value="{{ old('name', $student->documento) }}">
+                        <label for="document">Documento (Obligatorio)</label>
+                        <input type="text" class="form-control" id="document" name="document" placeholder="Documento" value="{{ old('document', $student->documento) }}">
                     </div>
     
                     <div class="form-group">
@@ -45,13 +71,13 @@
                     </div>
     
                     <div class="form-group">
-                        <label for="email">Correo Electronico</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electronico" value="{{ old('name', $student->correo_electronico) }}">
+                        <label for="email">Correo Electronico (Obligatorio)</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electronico" value="{{ old('email', $student->correo_electronico) }}">
                     </div>
     
                     <div class="form-group">
                         <label for="cardCode">Codigo de tarjeta</label>
-                        <input type="text" class="form-control" id="cardCode" name="cardCode" placeholder="Codigo de tarjeta" value="{{ old('name', $student->codigo_tarjeta) }}">
+                        <input type="text" class="form-control" id="cardCode" name="cardCode" placeholder="Codigo de tarjeta" value="{{ old('cardCode', $student->codigo_tarjeta) }}">
                     </div>
     
                 </div>

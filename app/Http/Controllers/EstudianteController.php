@@ -57,6 +57,18 @@ class EstudianteController extends Controller{
 
     public function store(Request $request){
 
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'document' => 'required|string|max:255|unique:estudiante,documento',
+            'email' => 'required|string|email|max:255|unique:estudiante,correo_electronico',
+        ],[
+            'name.required' => 'El nombre es obligatorio.',
+            'document.required' => 'El nombre es obligatorio.',
+            'document.unique' => 'Este documento ya está registrado.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.unique' => 'Este correo ya está registrado.',
+        ]);
+
         // Creo el estudiante
         $estudiante = new Estudiante;
         $estudiante->nombre = $request->name;
@@ -66,7 +78,8 @@ class EstudianteController extends Controller{
         $estudiante->correo_electronico = $request->email;
         $estudiante->save();
 
-        return redirect()->route('students.index')->with('success', 'Estudiante creado con éxito');
+        // return redirect()->route('students.index')->with('success', 'Estudiante creado con éxito');
+        return redirect()->route('students.edit', $estudiante->id)->with('success', 'Estudiante creado con éxito');
     }
 
     public function edit($id){
@@ -79,6 +92,19 @@ class EstudianteController extends Controller{
     public function update(Request $request, $id){
 
         $estudiante = Estudiante::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'document' => 'required|string|max:255|unique:estudiante,documento,'.$estudiante->id,
+            'email' => 'required|string|email|max:255|unique:estudiante,correo_electronico,'.$estudiante->id,
+        ],[
+            'name.required' => 'El nombre es obligatorio.',
+            'document.required' => 'El nombre es obligatorio.',
+            'document.unique' => 'Este documento ya está registrado.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.unique' => 'Este correo ya está registrado.',
+        ]);
+
         $estudiante->nombre = $request->name;
         $estudiante->documento = $request->document;
         $estudiante->grado = $request->grade;
@@ -86,7 +112,8 @@ class EstudianteController extends Controller{
         $estudiante->correo_electronico = $request->email;
         $estudiante->save();
 
-        return redirect()->route('students.index')->with('success', 'Estudiante actualizado con éxito');
+        // return redirect()->route('students.index')->with('success', 'Estudiante actualizado con éxito');
+        return redirect()->route('students.edit', $estudiante->id)->with('success', 'Estudiante actualizado con éxito');
     }
 
 }

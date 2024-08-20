@@ -42,11 +42,11 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="#" class="nav-link">INSTITUTO TECNICO INDUSTRIAL "L.P.N"</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li> --}}
     </ul>
 
     <!-- Right navbar links -->
@@ -78,7 +78,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">INSTITUTO TECNICO INDUSTRIAL "L.P.N"</span>
+      <span class="brand-text font-weight-light">Menu</span>
     </a>
 
     <!-- Sidebar -->
@@ -92,22 +92,20 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Menu principal
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('estudiantes') }}" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
+              <i class="nav-icon far fa-address-card"></i>
               <p>
                 Estudiantes
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('usuarios') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon far fa-user-circle"></i>
               <p>
                 Usuarios
               </p>
@@ -138,10 +136,10 @@
             <h1 class="m-0">@yield('tituloSeccion')</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            {{-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
+            </ol> --}}
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -158,7 +156,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2025 <a href="#">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2025 .</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 0.23
