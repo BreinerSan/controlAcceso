@@ -95,6 +95,7 @@
               </p>
             </a>
           </li>
+          @if(auth()->user()->role === 'Administrador')
           <li class="nav-item">
             <a href="{{ url('estudiantes') }}" class="nav-link">
               <i class="nav-icon far fa-address-card"></i>
@@ -103,6 +104,8 @@
               </p>
             </a>
           </li>
+          @endif
+          @if(auth()->user()->role === 'Administrador')
           <li class="nav-item">
             <a href="{{ url('usuarios') }}" class="nav-link">
               <i class="nav-icon far fa-user-circle"></i>
@@ -111,6 +114,7 @@
               </p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="{{ url('ingreso') }}" class="nav-link">
               <i class="nav-icon fas fa-columns"></i>
