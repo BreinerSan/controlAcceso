@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingreso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IngresoController extends Controller{
 
@@ -18,6 +19,13 @@ class IngresoController extends Controller{
 
         // Inicia una consulta en el modelo Ingreso
         $query = Ingreso::with('estudiante');
+
+        // Si es estudiante solo debe mostrar lo de el 
+        if(Auth::check() && Auth::user()->role === 'Estudiante'){
+            $query->whereHas('estudiante', function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            });
+        }
 
         // Filtra por grado del estudiante
         if ($request->filled('grade')) {
@@ -36,6 +44,11 @@ class IngresoController extends Controller{
         // Filtra por fecha específica
         if ($request->filled('specific_date')) {
             $query->whereDate('fecha_ingreso', $request->input('specific_date'));
+        }
+
+        // Filtra por codigo de tarjeta
+        if ($request->filled('cardCode')) {
+            $query->where('codigo_tarjeta', $request->input('cardCode'));
         }
 
         // Ejecuta la consulta y obtiene los resultados

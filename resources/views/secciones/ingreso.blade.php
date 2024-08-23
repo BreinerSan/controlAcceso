@@ -47,6 +47,14 @@
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Ingrese nombre" value="{{ old('name', request('name')) }}">
                             </div>
                         </div>
+
+                        <!-- Campo de texto para codigo tarjeta -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="cardCode">Codigo de tarjeta</label>
+                                <input type="text" name="cardCode" id="cardCode" class="form-control" placeholder="Ingrese codigo de tarjeta" value="{{ old('cardCode', request('cardCode')) }}">
+                            </div>
+                        </div>
                 
                     </div>
                 
@@ -72,6 +80,7 @@
                                 <tr>
                                     <th>Nombre del Estudiante</th>
                                     <th>Grado</th>
+                                    <th>Codigo tarjeta</th>
                                     <th>Fecha de Ingreso</th>
                                 </tr>
                             </thead>
@@ -80,6 +89,7 @@
                                     <tr>
                                         <td>{{ $ingreso->estudiante->nombre }}</td>
                                         <td>{{ $ingreso->estudiante->grado }}</td>
+                                        <td>{{ $ingreso->codigo_tarjeta }}</td>
                                         <td>{{ $ingreso->created_at->format('d/m/Y H:i:s') }}</td>
                                     </tr>
                                 @endforeach

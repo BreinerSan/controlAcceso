@@ -10,7 +10,7 @@ class UsuarioController extends Controller{
 
     public function index(){
 
-        $roles = ['Administrador', 'Estudiante', 'Acudiente'];
+        $roles = ['Administrador', 'Acudiente'];
 
         return view('secciones.usuario', compact('roles'));
     }
@@ -39,7 +39,7 @@ class UsuarioController extends Controller{
     }
 
     public function create(){
-        $roles = ['Administrador', 'Estudiante', 'Acudiente'];
+        $roles = ['Administrador', 'Acudiente'];
         $user = new User;
         return view('secciones.formUsuario', compact('user', 'roles'));
     }
@@ -69,7 +69,7 @@ class UsuarioController extends Controller{
     }
 
     public function edit($id){
-        $roles = ['Administrador', 'Estudiante', 'Acudiente'];
+        $roles = ['Administrador', 'Acudiente'];
 
         $user = User::findOrFail($id);
 

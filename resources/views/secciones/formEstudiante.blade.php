@@ -79,7 +79,17 @@
                         <label for="cardCode">Codigo de tarjeta</label>
                         <input type="text" class="form-control" id="cardCode" name="cardCode" placeholder="Codigo de tarjeta" value="{{ old('cardCode', $student->codigo_tarjeta) }}">
                     </div>
-    
+
+                    @if(is_null($student->user_id))
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="generateAccess" id="generateAccess" value="1" {{ (!isset($student->id)) ? 'checked' : '' }}>
+                            <label for="generateAccess" class="form-check-label">Generar acceso para este estudiante</label>
+                            <p class="info">Al activar esta opción se creará un acceso al sistema para este estudiante donde las credenciales serán el correo y el numero de documento como contraseña</p>
+                        </div>
+                    </div>
+                    @endif
+
                 </div>
     
                 <div class="card-footer">

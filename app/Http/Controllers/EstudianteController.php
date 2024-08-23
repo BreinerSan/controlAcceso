@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EstudianteController extends Controller{
 
@@ -59,7 +61,7 @@ class EstudianteController extends Controller{
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'document' => 'required|string|max:255|unique:estudiante,documento',
+            'document' => 'required|numeric|unique:estudiante,documento',
             'email' => 'required|string|email|max:255|unique:estudiante,correo_electronico',
         ],[
             'name.required' => 'El nombre es obligatorio.',
@@ -78,6 +80,22 @@ class EstudianteController extends Controller{
         $estudiante->correo_electronico = $request->email;
         $estudiante->save();
 
+        // Valido si esta activo la opcion de crear acceso
+        if(isset($request->generateAccess) && $request->generateAccess == 1){
+
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = 'Estudiante';
+            $user->password = Hash::make($request->document);
+            $user->save();
+
+            // vinculo el usuario creado al estudiante
+            $estudiante->user_id = $user->id;
+            $estudiante->save();
+
+        }
+
         // return redirect()->route('students.index')->with('success', 'Estudiante creado con éxito');
         return redirect()->route('students.edit', $estudiante->id)->with('success', 'Estudiante creado con éxito');
     }
@@ -95,7 +113,7 @@ class EstudianteController extends Controller{
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'document' => 'required|string|max:255|unique:estudiante,documento,'.$estudiante->id,
+            'document' => 'required|numeric|unique:estudiante,documento,'.$estudiante->id,
             'email' => 'required|string|email|max:255|unique:estudiante,correo_electronico,'.$estudiante->id,
         ],[
             'name.required' => 'El nombre es obligatorio.',
@@ -111,6 +129,24 @@ class EstudianteController extends Controller{
         $estudiante->codigo_tarjeta = $request->cardCode;
         $estudiante->correo_electronico = $request->email;
         $estudiante->save();
+
+        // Valido si esta activo la opcion de crear acceso
+        if(isset($request->generateAccess) && $request->generateAccess == 1){
+
+            if(is_null($estudiante->user_id)){
+                $user = new User;
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->role = 'Estudiante';
+                $user->password = Hash::make($request->document);
+                $user->save();
+    
+                // vinculo el usuario creado al estudiante
+                $estudiante->user_id = $user->id;
+                $estudiante->save();
+            }
+            
+        }
 
         // return redirect()->route('students.index')->with('success', 'Estudiante actualizado con éxito');
         return redirect()->route('students.edit', $estudiante->id)->with('success', 'Estudiante actualizado con éxito');
