@@ -65,11 +65,15 @@
                         <select name="role" id="role" class="form-control">
                             <option value="">Seleccione Rol</option>
                             <!-- Opciones de grado -->
-                            @foreach($roles as $role)
-                                <option value="{{ $role }}" {{ old('role', $user->role) == $role ? 'selected' : '' }}>
-                                    {{ $role }}
-                                </option>
-                            @endforeach
+                            @if ($user->role === 'Estudiante')
+                                <option value="Estudiante" selected>Estudiante</option>
+                            @else
+                                @foreach($roles as $role)
+                                    <option value="{{ $role }}" {{ old('role', $user->role) == $role ? 'selected' : '' }}>
+                                        {{ $role }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
     
