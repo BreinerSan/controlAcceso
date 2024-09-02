@@ -4,6 +4,15 @@
 
 @section('content')
 
+@if(session('deleted'))
+    <div class="col-md-12">
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            {{ session('deleted') }}
+        </div>
+    </div>
+@endif
+
 <div class="row">
     <div class="col-md-12">
         <a href="{{ url('usuarios/create') }}" class="btn btn-primary btn-block mb-3">
@@ -76,9 +85,17 @@
                                         <td>{{ $user->email }}</td>
                                         <td>
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">
-                                                Editar
                                                 <i class="fas fa-edit"></i>
+                                                Editar 
                                             </a>
+                                            <button class="btn btn-danger" onclick="confirmDelete({{$user->id}})">
+                                                <i class="fas fa-trash"></i>
+                                                Eliminar
+                                            </button>
+                                            <form id="deleteUserForm{{$user->id}}" action="{{ route('user.delete', $user->id) }}" method="POST" style="display:none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,5 +123,15 @@
 @endsection
 
 @section('scripts')
+
+<script>
+
+    function confirmDelete(userId){
+        if(confirm('Estas seguro de eliminar este usuario? Esta acción no se puede deshacer.')){
+            document.getElementById('deleteUserForm'+userId).submit();
+        }
+    }
+
+</script>
 
 @endsection

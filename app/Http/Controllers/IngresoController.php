@@ -20,6 +20,8 @@ class IngresoController extends Controller{
         // Inicia una consulta en el modelo Ingreso
         $query = Ingreso::with('estudiante');
 
+        $query->whereHas('estudiante');
+
         // Si es estudiante solo debe mostrar lo de el 
         if(Auth::check() && Auth::user()->role === 'Estudiante'){
             $query->whereHas('estudiante', function ($query) {

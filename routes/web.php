@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function(){
         Route::post('estudiantes', [EstudianteController::class, 'store'])->name('students.store');
         Route::get('estudiantes/{id}/edit', [EstudianteController::class, 'edit'])->name('students.edit');
         Route::put('estudiantes/{id}', [EstudianteController::class, 'update'])->name('students.update');
+        Route::delete('estudiantes/{id}', [EstudianteController::class, 'delete'])->name('students.delete');
     
         Route::get('usuarios', [UsuarioController::class, 'index'])->name('user.index');
         Route::get('usuarios/search', [UsuarioController::class, 'search'])->name('user.search');
@@ -35,5 +36,6 @@ Route::middleware('auth')->group(function(){
         Route::post('usuarios', [UsuarioController::class, 'store'])->name('user.store');
         Route::get('usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('user.edit');
         Route::put('usuarios/{id}', [UsuarioController::class, 'update'])->name('user.update');
+        Route::delete('usuarios/{id}', [UsuarioController::class, 'delete'])->name('user.delete');
     });
 });

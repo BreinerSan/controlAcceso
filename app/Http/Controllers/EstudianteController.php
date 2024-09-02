@@ -152,4 +152,23 @@ class EstudianteController extends Controller{
         return redirect()->route('students.edit', $estudiante->id)->with('success', 'Estudiante actualizado con éxito');
     }
 
+    public function delete($id){
+
+        // Buscamos el estudiante
+        $student = Estudiante::findOrFail($id);
+
+        // Validamos si tiene un registro en users
+        if(!is_null($student->user_id)){
+            $user = User::find($student->user_id);
+            if($user){
+                $user->delete();
+            }
+        }
+
+        // Eliminamos el estudiante
+        $student->delete();
+        
+        return redirect()->route('searchStudent')->with('deleted', 'Estudiante eliminado con éxito');
+    }
+
 }

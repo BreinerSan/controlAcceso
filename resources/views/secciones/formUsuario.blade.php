@@ -47,6 +47,13 @@
                 @endif
 
                 <div class="card-body">
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="activo" id="activo" value="1" checked>
+                            <label for="activo" class="form-check-label">Activo</label>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <label for="name">Nombre (Obligatorio)</label>

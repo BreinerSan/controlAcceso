@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -96,6 +97,23 @@ class UsuarioController extends Controller{
 
         // return redirect()->route('students.index')->with('success', 'Estudiante actualizado con éxito');
         return redirect()->route('user.edit', $user->id)->with('success', 'Usuario actualizado con éxito');
+    }
+
+    public function delete($id){
+
+        // Buscamos el estudiante
+        $user = User::findOrFail($id);
+
+        // Valido si es un estudiante
+        if($user->role === 'Estudiante'){
+            // Voy a dejar el estudiante que tenga ese id en null
+            $estudiantes = Estudiante::where('user_id', $id)->update(['user_id' => null]);
+        }
+
+        // Eliminamos el estudiante
+        $user->delete();
+        
+        return redirect()->route('user.search')->with('deleted', 'Usuario eliminado con éxito');
     }
 
 }
