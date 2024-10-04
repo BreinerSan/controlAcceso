@@ -11,7 +11,18 @@ class EstudianteController extends Controller{
 
     public function index(){
 
-        $grades = ['11-1', '11-2', '10-1', '10-2', '10-3'];
+        $grades = [
+            'Programación de software 10',
+            'Programación de software 11',
+            'Sistemas 10',
+            'Sistemas 11',
+            'Ebanisteria 10',
+            'Ebanisteria 11',
+            'Mecánica 10',
+            'Mecánica 11',
+            'Dibujo arquitectónico 10',
+            'Dibujo arquitectónico 11'
+        ];
 
         return view('secciones.estudiante', compact('grades'));
     }
@@ -44,7 +55,18 @@ class EstudianteController extends Controller{
         // Ejecuta la consulta y obtiene los resultados
         $results = $query->orderBy('nombre', 'asc')->paginate(20); // Paginar los resultados
 
-        $grades = ['11-1', '11-2', '10-1', '10-2', '10-3'];
+        $grades = [
+            'Programación de software 10',
+            'Programación de software 11',
+            'Sistemas 10',
+            'Sistemas 11',
+            'Ebanisteria 10',
+            'Ebanisteria 11',
+            'Mecánica 10',
+            'Mecánica 11',
+            'Dibujo arquitectónico 10',
+            'Dibujo arquitectónico 11'
+        ];
 
         // Devuelve los resultados a la vista
         return view('secciones.estudiante', compact('results', 'grades'));
@@ -52,7 +74,18 @@ class EstudianteController extends Controller{
     }
 
     public function create(){
-        $grades = ['11-1', '11-2', '10-1', '10-2', '10-3'];
+        $grades = [
+            'Programación de software 10',
+            'Programación de software 11',
+            'Sistemas 10',
+            'Sistemas 11',
+            'Ebanisteria 10',
+            'Ebanisteria 11',
+            'Mecánica 10',
+            'Mecánica 11',
+            'Dibujo arquitectónico 10',
+            'Dibujo arquitectónico 11'
+        ];
         $student = new Estudiante;
         return view('secciones.formEstudiante', compact('grades', 'student'));
     }
@@ -101,7 +134,18 @@ class EstudianteController extends Controller{
     }
 
     public function edit($id){
-        $grades = ['11-1', '11-2', '10-1', '10-2', '10-3'];
+        $grades = [
+            'Programación de software 10',
+            'Programación de software 11',
+            'Sistemas 10',
+            'Sistemas 11',
+            'Ebanisteria 10',
+            'Ebanisteria 11',
+            'Mecánica 10',
+            'Mecánica 11',
+            'Dibujo arquitectónico 10',
+            'Dibujo arquitectónico 11'
+        ];
         $student = Estudiante::findOrFail($id);
 
         return view('secciones.formEstudiante', compact('grades', 'student'));

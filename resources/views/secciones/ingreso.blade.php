@@ -19,9 +19,9 @@
                         <!-- Select para Grado -->
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="grade">Grado</label>
+                                <label for="grade">Especialidad</label>
                                 <select name="grade" id="grade" class="form-control">
-                                    <option value="">Seleccione Grado</option>
+                                    <option value="">Seleccione Especialidad</option>
                                     <!-- Opciones de grado -->
                                     @foreach($grades as $grade)
                                         <option value="{{ $grade }}" {{ old('grade', request('grade')) == $grade ? 'selected' : '' }}>
@@ -79,7 +79,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre del Estudiante</th>
-                                    <th>Grado</th>
+                                    <th>Especialidad</th>
                                     <th>Codigo tarjeta</th>
                                     <th>Fecha de Ingreso</th>
                                 </tr>

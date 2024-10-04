@@ -10,7 +10,18 @@ class IngresoController extends Controller{
 
     public function index(){
         
-        $grades = ['11-1', '11-2', '10-1', '10-2', '10-3'];
+        $grades = [
+            'Programación de software 10',
+            'Programación de software 11',
+            'Sistemas 10',
+            'Sistemas 11',
+            'Ebanisteria 10',
+            'Ebanisteria 11',
+            'Mecánica 10',
+            'Mecánica 11',
+            'Dibujo arquitectónico 10',
+            'Dibujo arquitectónico 11'
+        ];
 
         return view('secciones.ingreso', compact('grades'));
     }
@@ -56,7 +67,18 @@ class IngresoController extends Controller{
         // Ejecuta la consulta y obtiene los resultados
         $results = $query->orderBy('fecha_ingreso', 'desc')->paginate(20); // Paginar los resultados
 
-        $grades = ['11-1', '11-2', '10-1', '10-2', '10-3'];
+        $grades = [
+            'Programación de software 10',
+            'Programación de software 11',
+            'Sistemas 10',
+            'Sistemas 11',
+            'Ebanisteria 10',
+            'Ebanisteria 11',
+            'Mecánica 10',
+            'Mecánica 11',
+            'Dibujo arquitectónico 10',
+            'Dibujo arquitectónico 11'
+        ];
 
         // Devuelve los resultados a la vista
         return view('secciones.ingreso', compact('results', 'grades'));
